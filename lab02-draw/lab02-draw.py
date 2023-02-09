@@ -6,15 +6,13 @@ arcade.open_window(512, 512, "Survey Program")
 arcade.set_background_color(arcade.color.OCEAN_BOAT_BLUE)
 
 arcade.start_render()
-haocore = ((512/2+1-50 , 0),
-           (512/2+1, 0),
-           (512/2+1, 400),
-           (512/2+1-50, 400))
+MAX= 512+1
+HALF= 512/2 + 1
+arcade.draw_lrtb_rectangle_filled(HALF-100, HALF+50, HALF+100, 0, arcade.color.BROWN)
 
-arcade.draw_line(512/2+1, 0, 513/2+1, 400, arcade.color.BROWN, 100)
-arcade.draw_lrtb_rectangle_outline(512/2+1, 512/2+1+50, 400, 0, arcade.color.OLD_GOLD, 3.55)
-arcade.draw_polygon_outline(haocore, arcade.color.CHERRY_BLOSSOM_PINK, 2)
+arcade.draw_lrtb_rectangle_outline(HALF-100, HALF+50, HALF+100, -5, arcade.color.OLD_GOLD, 3)
 
+arcade.draw_polygon_filled((0, ))
 
 arcade.finish_render()
 arcade.run()
