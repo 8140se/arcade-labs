@@ -46,16 +46,14 @@ def draw_pendulo():
     arcade.draw_ellipse_filled(HALF+8, HALF-139, 40, 40, arcade.color.OLD_GOLD, 0)
 
 
-def draw_reflejo():
+def draw_reflejo(x, y):
     """Dibuja el resplandor del cristal."""
-    glass_reflection = ((HALF - 70, HALF - 10),
-                        (HALF - 70, HALF - 50),
-                        (HALF + 25, HALF - 120),
-                        (HALF + 25, HALF - 80))
+    glass_reflection = ((HALF - 70 + x, HALF - 10 + y),
+                        (HALF - 70 + x, HALF - 50 + y),
+                        (HALF + 25 + x, HALF - 120 + y),
+                        (HALF + 25 + x, HALF - 80 + y))
 
     arcade.draw_polygon_filled(glass_reflection, (87, 147, 186,150))
-
-
 
 def draw_agujas():
     """Dibuja las agujas del reloj."""
@@ -73,10 +71,13 @@ def draw_fondo():
 
     arcade.draw_lines(bg_lines, arcade.color.AMAZON, 110)
 
-def circunferencia():
+def circunferencia(x):
     """Dibuja la circunferencia que rodea el reloj."""
     # Circunferencia parcial del reloj
-    arcade.draw_arc_outline(HALF - 25, HALF + 100, 106, 106, (54, 15, 1), 90, 270, 9, 120)
+    arcade.draw_arc_outline(HALF - 25, HALF + 100, 106, 106, (54, 15, 1), 90, 270, 9, 120 + x)
+    if x == 360:
+        x = 0
+
 def ventana():
     """Dibuja la ventana."""
     arcade.draw_lrtb_rectangle_filled(HALF - 70, HALF + 25, HALF, -5, (13, 96, 140, 100))
@@ -113,13 +114,23 @@ def main():
     arcade.draw_text("VI", HALF - 33, HALF + 52, arcade.color.BLACK, 10)
     arcade.draw_text("IX", HALF - 73, HALF + 93, arcade.color.BLACK, 10)
 
+def on_draw_circun(delta_time):
+    """Here goes the stuff that is animated."""
+    circunferencia(c)
+
+def movement():
+    arcade.schedule(on_draw_circun, 1/30)
+
+c = 0
 main()
 draw_fondo()
 draw_agujas()
 draw_pendulo()
 ventana()
-circunferencia()
-draw_reflejo()
+movement()
+draw_reflejo(0, 0)
+draw_reflejo(0, -100)
+draw_reflejo(0, -200)
 
 arcade.finish_render()
 arcade.run()
