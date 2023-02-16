@@ -7,8 +7,8 @@ arcade.open_window(512, 512, "Survey Program")
 arcade.set_background_color(arcade.color.PISTACHIO)
 
 arcade.start_render()
-MAX= 512+1
-HALF= 512/2 + 1
+MAX = 512+1
+HALF = 512/2 + 1
 
 #Listas de puntos usadas
 middle_outline = ((HALF-100, -5),
