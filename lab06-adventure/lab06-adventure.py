@@ -10,7 +10,7 @@ class Room:
 def main():
     current_room = 0
     room_list = []
-    room0 = Room("You find yourself in an open space, you are blinded by the pure white lights from the ceiling. The room seems to continue up ahead.",
+    room0 = Room("You find yourself in an open space, you are blinded by the pure white lights from the ceiling. \nThe room seems to continue up ahead.",
                 1,
                 None,
                 None,
