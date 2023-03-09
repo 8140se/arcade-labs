@@ -6,9 +6,7 @@ WINDOW_HEIGHT = WINDOW_WIDTH
 
 class TheWindow(arcade.Window):
     def __init__(self,width,height,color):
-        self.width = width
-        self.height = height
-        self.color = color
+        
 
 arcade.open_window(512, 512, "Whatsapp")
 
