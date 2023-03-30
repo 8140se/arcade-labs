@@ -17,6 +17,7 @@ class FragmentRecollector(arcade.Window):
         """Initializer"""
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Arcaea Fragment Recollector")
 
+        self.sound = arcade.load_sound("laser.wav")
         #Sprite Lists
         self.player_list = None
         self.good_list = None
@@ -70,6 +71,9 @@ class FragmentRecollector(arcade.Window):
 
         output = f"Score: {self.score}"
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+        if len(self.good_list) == 0:
+            arcade.draw_text("GAME OVER",200,400,arcade.color.WHITE,50)
+            arcade.draw_text("Your total score is "+str(self.score), 250, 300, arcade.color.WHITE, 25)
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.LEFT:
@@ -97,6 +101,7 @@ class FragmentRecollector(arcade.Window):
                                                             self.bad_list)
         for bad in bad_hit_list:
             bad.remove_from_sprite_lists()
+            arcade.play_sound(self.sound)
             if self.score == 0:
                 self.score = 0
             else:
@@ -117,9 +122,11 @@ class FragmentRecollector(arcade.Window):
                 bad.change_x *=(-1)
             if bad.center_y >= SCREEN_HEIGHT or bad.center_y <= 0:
                 bad.change_y *= (-1)
+            if len(self.good_list) == 0:
+                bad.change_y=0
+                bad.change_x=0
 
-        if len(self.good_list) == 0:
-            arcade.draw_text("GAME OVER",400,400,arcade.color.WHITE,100)
+
 
 
 
